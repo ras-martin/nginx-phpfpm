@@ -6,7 +6,7 @@ set -e
 
 for purpose in ${build_purposes[@]}; do
     for arch in ${build_architectures[@]}; do
-        echo ">>> Build ${purpose} for ${arch}"
+        echo ">>> Build ${purpose} for ${arch}, qemu architecture ${docker_qemu_arch_map[${arch}]}"
 
         BASE_IMAGE_PREFIX="${base_image_prefix_map[${arch}]}"
 
