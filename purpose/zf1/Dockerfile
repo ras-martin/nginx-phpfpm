@@ -4,10 +4,10 @@ ARG BUILD_DATE
 
 FROM ${BASE_IMAGE_PREFIX}alpine:3.10
 
-LABEL maintainer="martin+docker@x8x.at"
-LABEL arch="${ARCH}"
-LABEL purpose="zf1"
-LABEL builddate="${BUILD_DATE}"
+LABEL maintainer="martin+docker@x8x.at" \
+        arch="${ARCH}" \
+        purpose="zf1" \
+        builddate="${BUILD_DATE}"
 
 COPY qemu-${ARCH}-static /usr/bin
 
