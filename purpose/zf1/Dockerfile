@@ -1,9 +1,8 @@
 ARG BASE_IMAGE_PREFIX
-ARG ARCH
-ARG BUILD_DATE
-
 FROM ${BASE_IMAGE_PREFIX}alpine:3.10
 
+ARG ARCH
+ARG BUILD_DATE
 LABEL maintainer="martin+docker@x8x.at" \
         arch="${ARCH}" \
         purpose="zf1" \
