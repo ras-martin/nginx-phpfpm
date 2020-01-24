@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source hooks/.config
+
+for purpose in ${build_purposes[@]}; do
+  for arch in ${build_architectures[@]}; do
+    docker push "${DOCKER_REPO}:${purpose}-${arch}"
+
+    if [ "${purpose}" = "general" ] && [ "${arch}" = "amd64" ]; then
+      docker tag "${DOCKER_REPO}:${purpose}-${arch}" "${IMAGE_NAME}"
+      docker push "${IMAGE_NAME}"
+    fi
+  done
+done
+

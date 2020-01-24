@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mkdir -p /application/log/nginx /application/log/php /application/log/supervisord
+
+if [ ! -e "/application/log/supervisord/supervisord.log" ]; then
+    touch /application/log/supervisord/supervisord.log
+fi
+
+if [ ! -e "/application/log/error.log" ]; then
+    touch /application/log/error.log
+fi
+
+chown -R www-data /application/log
+chown -R root:root /application/log/supervisord

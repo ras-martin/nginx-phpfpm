@@ -1,0 +1,23 @@
+#!/bin/bash
+
+source hooks/.config
+
+set -e
+
+for purpose in ${build_purposes[@]}; do
+    for arch in ${build_architectures[@]}; do
+        echo ">>> Build ${purpose} for ${arch}"
+
+        BASE_IMAGE_PREFIX="${base_image_prefix_map[${arch}]}"
+
+        docker build \
+            --build-arg BASE_IMAGE_PREFIX=${BASE_IMAGE_PREFIX} \
+            --build-arg ARCH=${docker_qemu_arch_map[${arch}]} \
+            --build-arg PURPOSE=${purpose} \
+            --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+            --tag "${DOCKER_REPO}:${purpose}-${arch}" \
+            -f purpose/${purpose}/Dockerfile \
+            .
+    done
+done
+
