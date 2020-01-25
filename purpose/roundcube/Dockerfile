@@ -5,7 +5,7 @@ ARG ARCH
 ARG BUILD_DATE
 LABEL maintainer="martin+docker@x8x.at" \
         arch="${ARCH}" \
-        purpose="zf1" \
+        purpose="roundcube" \
         builddate="${BUILD_DATE}"
 
 COPY qemu-${ARCH}-static /usr/bin
@@ -22,29 +22,29 @@ RUN apk upgrade --update \
         composer \
         php7 \
         php7-fpm \
-        php7-bcmath \
         php7-bz2 \
         php7-curl \
         php7-ctype \
         php7-dom \
-        php7-gd \
+        php7-exif \
+        php7-fileinfo \
         php7-iconv \
+        php7-imap \
         php7-intl \
         php7-mbstring \
         php7-mysqli \
-        php7-oauth \
         php7-opcache \
-        php7-pcntl \
         php7-pdo \
         php7-pdo_mysql \
         php7-posix \
-        php7-tokenizer \
+        php7-pspell \
         php7-redis \
         php7-simplexml \
         php7-xdebug \
         php7-xml \
         php7-zip \
     && adduser -u 82 -D -S -G www-data www-data \
+    && mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig \
     && mkdir -p /run/nginx \
     && composer self-update \
     && composer global require hirak/prestissimo \
@@ -73,11 +73,11 @@ WORKDIR /application/src
 # System stuff
 COPY common/supervisord.conf /etc/supervisord.conf
 COPY common/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY purpose/zf1/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY purpose/zf1/php7/php.ini /etc/php7/php.ini
+COPY purpose/roundcube/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY purpose/roundcube/php7/php.ini /etc/php7/php.ini
 COPY common/php7/php-fpm.conf /etc/php7/php-fpm.conf
 COPY common/php7/pool.conf /etc/php7/php-fpm.d/www.conf
-COPY purpose/zf1/php7/opcache.blacklist /etc/php7/conf.d/opcache.blacklist
+COPY purpose/roundcube/php7/opcache.blacklist /etc/php7/conf.d/opcache.blacklist
 
 # Entrypoint
 COPY common/entrypoint/entrypoint.sh /

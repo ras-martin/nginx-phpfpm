@@ -71,7 +71,6 @@ RUN apk upgrade --update \
     && chown www-data:www-data /application/sockets/php \
     && chown -R www-data /var/tmp/nginx
 
-
 WORKDIR /application/src
 
 # System stuff

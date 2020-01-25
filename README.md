@@ -3,7 +3,7 @@
 * [Docker Hub](https://hub.docker.com/r/rasmartin/nginx-phpfpm)
 * [GitHub](https://github.com/ras-martin/nginx-phpfpm)
 
-This is a Docker-Image based on [Nginx](https://www.nginx.com/) and [PHP-FPM](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
+This Docker-Image is based on [Alpine Linux 3.10](https://alpinelinux.org/) with [Nginx 1.16.1](https://www.nginx.com/) and [PHP-FPM (PHP 7.3.14)](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
 
 ## Available Tags
 
@@ -21,7 +21,7 @@ To host your [ZF1](https://github.com/zendframework/zf1)-based project you have 
 
 ## Environment variables
  * `FAKE_HTTPS`: possible values `on` or `off`, default `on`. Is used to tell the aplication it's running on https (-> `$_SERVER['HTTPS']`)
- * `DOCROOT_SUFFIX`: By default the docroot is set to `/application/src`. If required, the docroot path can be extended to `/applicaiton/src/$DOCROOT_SUFFIX`
+ * `DOCROOT_SUFFIX` (on general purpose image only): By default the docroot is set to `/application/src`. If required, the docroot path can be extended to `/applicaiton/src/$DOCROOT_SUFFIX`
 
 ## FAQ's
 
@@ -41,5 +41,5 @@ For example: when you are using Nextcloud's `occ` (see [Nextcloud OCC](https://d
 
 ### Why PHP Xdebug is installed?
 
-The extension is installed, but not active. Active it for development purposes by adding a `99_xdebug.ini` to `/etc/php7/conf.d` with your [Xdebug-config](https://xdebug.org/docs/all_settings), but at least with `zend_extension = xdebug.so`. 
+The extension is installed, but not active. Active it for development purposes by adding a `99_xdebug.ini` to `/etc/php7/conf.d` with your [Xdebug-config](https://xdebug.org/docs/all_settings), but at least with `zend_extension = xdebug.so`.
 
