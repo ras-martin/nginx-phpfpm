@@ -15,8 +15,12 @@ else
     fi
 fi
 
+if [ ! -f "/etc/nginx/conf.d/default.conf.original" ]; then
+    cp /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.original
+fi
+
 sed \
     -e "s%__docroot_suffix__%${docroot_suffix_value}%g" \
     -e "s%__fake_https__%${fake_https_value}%g" \
-    /etc/nginx/conf.d/default.conf > /etc/nginx/conf.d/default.conf
+    /etc/nginx/conf.d/default.conf.original > /etc/nginx/conf.d/default.conf
 
