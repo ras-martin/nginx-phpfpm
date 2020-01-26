@@ -8,7 +8,7 @@ DEFAULT_FAKE_HTTPS="on"
 if [[ -z "${FAKE_HTTPS}" ]]; then
     fake_https_value=${DEFAULT_FAKE_HTTPS}
 else
-    if [ "${FAKE_HTTPS}" == "on"] || [ "${FAKE_HTTPS}" == "off"]; then
+    if [ "${FAKE_HTTPS}" == "on" ] || [ "${FAKE_HTTPS}" == "off" ]; then
         fake_https_value=${FAKE_HTTPS}
     else
         fake_https_value=${DEFAULT_FAKE_HTTPS}
