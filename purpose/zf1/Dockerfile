@@ -32,20 +32,20 @@ RUN apk upgrade --update \
         php7-intl \
         php7-mbstring \
         php7-mysqli \
-        php7-oauth \
         php7-opcache \
         php7-pcntl \
         php7-pdo \
         php7-pdo_mysql \
         php7-posix \
         php7-tokenizer \
-        php7-redis \
         php7-simplexml \
-        php7-xdebug \
         php7-xml \
         php7-zip \
+        php7-pecl-xdebug \
+        php7-pecl-oauth \
+        php7-pecl-redis \
     && adduser -u 82 -D -S -G www-data www-data \
-    && mkdir -p /run/nginx \
+    && mkdir -p /run/nginx /var/tmp/nginx \
     && composer self-update \
     && composer global require hirak/prestissimo \
     && mkdir -p \
