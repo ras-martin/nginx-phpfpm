@@ -1,6 +1,6 @@
 # Dummy image for Docker Hub automated builds
 
-FROM alpine:3.10
+FROM alpine:3.12
 
 RUN touch /.nothing
 

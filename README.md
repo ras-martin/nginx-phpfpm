@@ -3,7 +3,7 @@
 * [Docker Hub](https://hub.docker.com/r/rasmartin/nginx-phpfpm)
 * [GitHub](https://github.com/ras-martin/nginx-phpfpm)
 
-This Docker-Image is based on [Alpine Linux 3.10](https://alpinelinux.org/) with [Nginx 1.16.1](https://www.nginx.com/) and [PHP-FPM (PHP 7.3.14)](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
+This Docker-Image is based on [Alpine Linux 3.12](https://alpinelinux.org/) with [Nginx 1.16.1](https://www.nginx.com/) and [PHP-FPM (PHP 7.3.20)](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
 
 ## Available Tags
 
