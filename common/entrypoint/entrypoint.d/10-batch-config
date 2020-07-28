@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_DOCROOT_SUFFIX="public"
+DEFAULT_DOCROOT_SUFFIX=""
 DEFAULT_FAKE_HTTPS="on"
 
 [[ -z "${DOCROOT_SUFFIX}" ]] && docroot_suffix_value=${DEFAULT_DOCROOT_SUFFIX} || docroot_suffix_value="${DOCROOT_SUFFIX}"

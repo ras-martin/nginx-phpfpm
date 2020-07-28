@@ -14,6 +14,8 @@ ENV COMPOSER_HOME /tmp/composer
 ENV COMPOSER_CACHE_DIR /tmp/composer/cache
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
+ENV DOCROOT_SUFFIX public
+
 RUN apk upgrade --update \
     && apk add --no-cache \
         bash \
