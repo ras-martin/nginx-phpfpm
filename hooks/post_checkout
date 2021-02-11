@@ -4,8 +4,8 @@ source hooks/.config
 
 for arch in ${build_architectures[@]}; do
     echo ">>> Start download of qemu-${docker_qemu_arch_map[${arch}]}-static"
-    
-    curl -L https://github.com/multiarch/qemu-user-static/releases/download/v4.2.0-2/qemu-${docker_qemu_arch_map[${arch}]}-static -o qemu-${docker_qemu_arch_map[${arch}]}-static
+
+    curl -L https://github.com/multiarch/qemu-user-static/releases/download/v5.2.0-2/qemu-${docker_qemu_arch_map[${arch}]}-static -o qemu-${docker_qemu_arch_map[${arch}]}-static
     chmod 755 qemu-${docker_qemu_arch_map[${arch}]}-static
 done
 
