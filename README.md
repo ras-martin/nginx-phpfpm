@@ -3,7 +3,7 @@
 * [Docker Hub](https://hub.docker.com/r/rasmartin/nginx-phpfpm)
 * [GitHub](https://github.com/ras-martin/nginx-phpfpm)
 
-This Docker-Image is based on [Alpine Linux 3.12](https://alpinelinux.org/) with [Nginx 1.16.1](https://www.nginx.com/) and [PHP-FPM (PHP 7.3.20)](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
+This Docker-Image is based on [Alpine Linux 3.13](https://alpinelinux.org/) with [Nginx 1.18.0](https://www.nginx.com/) and [PHP-FPM (PHP 7.4.15 or 8.0.2)](https://www.php.net/). The different available tags offer a optimized configuration for some PHP-based applications like Nextcloud or Roundcube. Images are available for amd64 and arm (arm32v7, armhf) architectures.
 
 ## Available Tags
 
@@ -37,7 +37,7 @@ If it is required to overwrite PHP settings, create a custom configuration file 
 
 To exclude PHP-files from being cached by PHP opcache.
 
-For example: when you are using Nextcloud's `occ` (see [Nextcloud OCC](https://docs.nextcloud.com/server/15/admin_manual/configuration_server/occ_command.html)) it could happen that your Nextcloud `config/config.php` is modified, for example if you turning maintenance mode on/off with `occ maintenance:mode --[on|off]`. But if `config/config.php` is in Opcache, the maintenance mode setting wouldn't have any effect on your Nextcloud instance until your restart/reload the PHP-FPM (or reset the Opcache through other ways).
+For example: when you are using Nextcloud's `occ` (see [Nextcloud OCC](https://docs.nextcloud.com/server/21/admin_manual/configuration_server/occ_command.html)) it could happen that your Nextcloud `config/config.php` is modified, for example if you turning maintenance mode on/off with `occ maintenance:mode --[on|off]`. But if `config/config.php` is in Opcache, the maintenance mode setting wouldn't have any effect on your Nextcloud instance until your restart/reload the PHP-FPM (or reset the Opcache through other ways).
 
 ### Why PHP Xdebug is installed?
 

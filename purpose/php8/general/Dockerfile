@@ -5,6 +5,7 @@ ARG ARCH
 ARG BUILD_DATE
 LABEL maintainer="martin+docker@x8x.at" \
         arch="${ARCH}" \
+        phpversion="${PHPVERSION}" \
         purpose="general" \
         builddate="${BUILD_DATE}"
 
@@ -49,8 +50,6 @@ RUN apk upgrade --update \
         php8-pecl-redis \
     && adduser -u 82 -D -S -G www-data www-data \
     && mkdir -p /run/nginx /var/tmp/nginx \
-    && composer self-update \
-    && composer global require hirak/prestissimo \
     && mkdir -p \
         /application \
         /application/src \
@@ -76,12 +75,12 @@ WORKDIR /application/src
 # System stuff
 COPY common/supervisord.conf /etc/supervisord.conf
 COPY common/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY purpose/general/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY purpose/general/php8/php-cli.ini /etc/php8/php-cli.ini
-COPY purpose/general/php8/php.ini /etc/php8/php.ini
+COPY purpose/php8/general/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY purpose/php8/general/php8/php-cli.ini /etc/php8/php-cli.ini
+COPY purpose/php8/general/php8/php.ini /etc/php8/php.ini
 COPY common/php8/php-fpm.conf /etc/php8/php-fpm.conf
 COPY common/php8/pool.conf /etc/php8/php-fpm.d/www.conf
-COPY purpose/general/php8/opcache.blacklist /etc/php8/conf.d/opcache.blacklist
+COPY purpose/php8/general/php8/opcache.blacklist /etc/php8/conf.d/opcache.blacklist
 
 # Entrypoint
 COPY common/entrypoint/entrypoint.sh /
