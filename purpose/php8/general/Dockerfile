@@ -20,7 +20,6 @@ RUN apk upgrade --update \
         bash \
         nginx \
         supervisor \
-        composer \
         php8 \
         php8-fpm \
         php8-bcmath \
@@ -48,6 +47,7 @@ RUN apk upgrade --update \
         php8-pecl-xdebug \
         php8-pecl-oauth \
         php8-pecl-redis \
+    && curl -sS https://getcomposer.org/installer | /usr/bin/php8 -- --install-dir=/usr/bin --filename=composer \
     && adduser -u 82 -D -S -G www-data www-data \
     && mkdir -p /run/nginx /var/tmp/nginx \
     && mkdir -p \
