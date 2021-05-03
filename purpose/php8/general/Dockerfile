@@ -40,6 +40,7 @@ RUN apk upgrade --update \
         php8-pdo \
         php8-pdo_mysql \
         php8-pdo_pgsql \
+        php8-phar \
         php8-posix \
         php8-tokenizer \
         php8-simplexml \
