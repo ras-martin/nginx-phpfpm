@@ -13,6 +13,7 @@ for phpversion in ${php_versions[@]}; do
                 BASE_IMAGE_PREFIX="${base_image_prefix_map[${arch}]}"
 
                 docker build \
+                    --no-cache \
                     --build-arg BASE_IMAGE_PREFIX=${BASE_IMAGE_PREFIX} \
                     --build-arg ARCH=${docker_qemu_arch_map[${arch}]} \
                     --build-arg PURPOSE=${purpose} \

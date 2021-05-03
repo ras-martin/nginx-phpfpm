@@ -73,7 +73,7 @@ RUN apk upgrade --update \
 WORKDIR /application/src
 
 # System stuff
-COPY common/supervisord.conf /etc/supervisord.conf
+COPY common/supervisord-php8.conf /etc/supervisord.conf
 COPY common/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY purpose/php8/general/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY purpose/php8/general/php8/php-cli.ini /etc/php8/php-cli.ini
