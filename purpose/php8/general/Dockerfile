@@ -18,6 +18,7 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN apk upgrade --update \
     && apk add --no-cache \
         bash \
+        curl \
         nginx \
         supervisor \
         php8 \
@@ -47,6 +48,7 @@ RUN apk upgrade --update \
         php8-pecl-xdebug \
         php8-pecl-oauth \
         php8-pecl-redis \
+    && ln -s /usr/bin/php8 /usr/bin/php \
     && curl -sS https://getcomposer.org/installer | /usr/bin/php8 -- --install-dir=/usr/bin --filename=composer \
     && adduser -u 82 -D -S -G www-data www-data \
     && mkdir -p /run/nginx /var/tmp/nginx \
