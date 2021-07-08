@@ -19,6 +19,7 @@ RUN apk upgrade --update \
     && apk add --no-cache \
         bash \
         curl \
+        git \
         nginx \
         supervisor \
         php8 \
