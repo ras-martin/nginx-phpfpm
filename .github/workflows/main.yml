@@ -14,7 +14,7 @@ env:
   IMAGE_NAME: "${REGISTRY}/${{ github.repository_owner }}/nginx-phpfpm"
 
 jobs:
-  php8.0:
+  php80:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
