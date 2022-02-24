@@ -1,15 +1,12 @@
-ARG BASE_IMAGE_PREFIX
-FROM ${BASE_IMAGE_PREFIX}alpine:3.14
+FROM --platform=${TARGETPLATFORM} alpine:3.15
 
-ARG ARCH
+ARG TARGETPLATFORM
 ARG BUILD_DATE
 LABEL maintainer="martin+docker@x8x.at" \
-        arch="${ARCH}" \
+        arch="${TARGETPLATFORM}" \
         phpversion="${PHPVERSION}" \
         purpose="general" \
         builddate="${BUILD_DATE}"
-
-COPY qemu-${ARCH}-static /usr/bin
 
 ENV COMPOSER_HOME /tmp/composer
 ENV COMPOSER_CACHE_DIR /tmp/composer/cache
@@ -50,9 +47,8 @@ RUN apk upgrade --update \
         php8-pecl-xdebug \
         php8-pecl-oauth \
         php8-pecl-redis \
+        composer \
     && ln -s /usr/bin/php8 /usr/bin/php \
-    && curl -sS https://getcomposer.org/installer | /usr/bin/php8 -- --install-dir=/usr/bin --filename=composer \
-    && adduser -u 82 -D -S -G www-data www-data \
     && mkdir -p /run/nginx /var/tmp/nginx \
     && mkdir -p \
         /application \

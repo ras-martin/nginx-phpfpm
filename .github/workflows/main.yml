@@ -1,0 +1,75 @@
+name: Docker Build
+on:
+  push:
+    branches: [ github-actions ]
+    tags:
+      - v*
+  pull_request:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: "${REGISTRY}/${{ github.repository_owner }}/nginx-phpfpm"
+
+jobs:
+  php8.0:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      DOCKERFILE_PATH: php8/general/
+      PHP_VERSION: php80
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v2
+
+      - name: Login to Registry
+        id: docker-login
+        if: success()
+        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Prepare
+        id: prepare
+        run: |
+          VERSION=edge
+
+          if [[ $GITHUB_REF_NAME == master ]]; then
+            VERSION=${PHP_VERSION}_latest
+          fi
+
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}
+          fi
+
+          if [[ $GITHUB_REF == refs/heads/* ]]; then
+            VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}__${GITHUB_RUN_NUMBER}
+          fi
+
+          echo ::set-output name=docker_image::${IMAGE_NAME}
+          echo ::set-output name=version::${VERSION}
+          echo ::set-output name=builddate::$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+      - name: Run Buildx
+        id: docker-build
+        run: |
+          docker buildx build \
+            --platform linux/amd64,linux/arm/v7,linux/arm64 \
+            --tag ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }} \
+            --buildarg PHPVERSION=${PHP_VERSION} \
+            --build-arg BUILD_DATE=${{ steps.prepare.outputs.builddate }} \
+            --output "type=image,push=true" \
+            --file ./${DOCKERFILE_PATH}/Dockerfile .
