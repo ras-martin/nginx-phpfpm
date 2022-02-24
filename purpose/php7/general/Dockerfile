@@ -17,6 +17,7 @@ RUN apk upgrade --update \
         bash \
         nginx \
         supervisor \
+        libseccomp \
         composer \
         php7 \
         php7-fpm \

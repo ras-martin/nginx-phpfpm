@@ -19,6 +19,7 @@ RUN apk upgrade --update \
         git \
         nginx \
         supervisor \
+        libseccomp \
         php8 \
         php8-fpm \
         php8-bcmath \
