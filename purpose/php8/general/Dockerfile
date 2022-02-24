@@ -65,6 +65,7 @@ RUN apk upgrade --update \
         /etc/php8/conf.d/zzz-override.ini \
         /application/log/error.log \
     && rm -f /etc/php8/conf.d/xdebug.ini \
+    && adduser -u 82 -D -S -G www-data www-data \
     && chown -R www-data /application/log /application/run \
     && chown -R root:root /application/log/supervisord* \
     && chown www-data:www-data /application/sockets/php \
