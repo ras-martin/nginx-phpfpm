@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      DOCKERFILE_PATH: php8/general/
+      DOCKERFILE_PATH: php8/general
       PHP_VERSION: php80
 
     steps:
