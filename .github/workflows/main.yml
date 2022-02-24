@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
-      DOCKERFILE_PATH: php8/general
+      PURPOSE: php8/general
       PHP_VERSION: php80
 
     steps:
@@ -63,7 +63,7 @@ jobs:
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=builddate::$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo ::set-output name=php_version::${PHP_VERSION}
-          echo ::set-output name=docker_file::"./${DOCKERFILE_PATH}/Dockerfile"
+          echo ::set-output name=docker_file::"./purpose/${PURPOSE}/Dockerfile"
 
       - name: Run Buildx
         id: docker-build
