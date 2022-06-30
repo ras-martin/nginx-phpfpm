@@ -53,7 +53,6 @@ RUN apk upgrade --update \
         php8-pecl-oauth \
         php8-pecl-redis \
         composer \
-    && ln -s /usr/bin/php8 /usr/bin/php \
     && mkdir -p /run/nginx /var/tmp/nginx \
     && mkdir -p \
         /application \
