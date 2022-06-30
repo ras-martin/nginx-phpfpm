@@ -27,6 +27,7 @@ RUN apk upgrade --update \
         php8-curl \
         php8-ctype \
         php8-dom \
+        php8-exif \
         php8-fileinfo \
         php8-gd \
         php8-iconv \
@@ -35,6 +36,7 @@ RUN apk upgrade --update \
         php8-mysqli \
         php8-pgsql \
         php8-opcache \
+        php8-openssl \
         php8-pcntl \
         php8-pdo \
         php8-pdo_mysql \
@@ -44,6 +46,8 @@ RUN apk upgrade --update \
         php8-tokenizer \
         php8-simplexml \
         php8-xml \
+        php8-xmlreader \
+        php8-xmlwriter \
         php8-zip \
         php8-pecl-xdebug \
         php8-pecl-oauth \
