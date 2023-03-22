@@ -65,9 +65,9 @@ RUN apk upgrade --update \
         /application/sockets/php \
         /application/sockets/supervisord \
     && touch \
-        /etc/php8/conf.d/zzz-override.ini \
+        /etc/php81/conf.d/zzz-override.ini \
         /application/log/error.log \
-    && rm -f /etc/php8/conf.d/xdebug.ini \
+    && rm -f /etc/php81/conf.d/xdebug.ini \
     && adduser -u 82 -D -S -G www-data www-data \
     && chown -R www-data /application/log /application/run \
     && chown -R root:root /application/log/supervisord* \
@@ -81,11 +81,11 @@ WORKDIR /application/src
 COPY common/supervisord-php8.conf /etc/supervisord.conf
 COPY common/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY purpose/php8/general/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY purpose/php8/general/php8/php-cli.ini /etc/php8/php-cli.ini
-COPY purpose/php8/general/php8/php.ini /etc/php8/php.ini
-COPY common/php8/php-fpm.conf /etc/php8/php-fpm.conf
-COPY common/php8/pool.conf /etc/php8/php-fpm.d/www.conf
-COPY purpose/php8/general/php8/opcache.blacklist /etc/php8/conf.d/opcache.blacklist
+COPY purpose/php8/general/php8/php-cli.ini /etc/php81/php-cli.ini
+COPY purpose/php8/general/php8/php.ini /etc/php81/php.ini
+COPY common/php8/php-fpm.conf /etc/php81/php-fpm.conf
+COPY common/php8/pool.conf /etc/php81/php-fpm.d/www.conf
+COPY purpose/php8/general/php8/opcache.blacklist /etc/php81/conf.d/opcache.blacklist
 
 # Entrypoint
 COPY common/entrypoint/entrypoint.sh /
