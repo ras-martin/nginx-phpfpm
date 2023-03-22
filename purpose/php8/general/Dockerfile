@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:3.16
+FROM --platform=${TARGETPLATFORM} alpine:3.17
 
 ARG TARGETPLATFORM
 ARG BUILD_DATE
@@ -20,38 +20,38 @@ RUN apk upgrade --update \
         nginx \
         supervisor \
         libseccomp \
-        php8 \
-        php8-fpm \
-        php8-bcmath \
-        php8-bz2 \
-        php8-curl \
-        php8-ctype \
-        php8-dom \
-        php8-exif \
-        php8-fileinfo \
-        php8-gd \
-        php8-iconv \
-        php8-intl \
-        php8-mbstring \
-        php8-mysqli \
-        php8-pgsql \
-        php8-opcache \
-        php8-openssl \
-        php8-pcntl \
-        php8-pdo \
-        php8-pdo_mysql \
-        php8-pdo_pgsql \
-        php8-phar \
-        php8-posix \
-        php8-tokenizer \
-        php8-simplexml \
-        php8-xml \
-        php8-xmlreader \
-        php8-xmlwriter \
-        php8-zip \
-        php8-pecl-xdebug \
-        php8-pecl-oauth \
-        php8-pecl-redis \
+        php81 \
+        php81-fpm \
+        php81-bcmath \
+        php81-bz2 \
+        php81-curl \
+        php81-ctype \
+        php81-dom \
+        php81-exif \
+        php81-fileinfo \
+        php81-gd \
+        php81-iconv \
+        php81-intl \
+        php81-mbstring \
+        php81-mysqli \
+        php81-pgsql \
+        php81-opcache \
+        php81-openssl \
+        php81-pcntl \
+        php81-pdo \
+        php81-pdo_mysql \
+        php81-pdo_pgsql \
+        php81-phar \
+        php81-posix \
+        php81-tokenizer \
+        php81-simplexml \
+        php81-xml \
+        php81-xmlreader \
+        php81-xmlwriter \
+        php81-zip \
+        php81-pecl-xdebug \
+        php81-pecl-oauth \
+        php81-pecl-redis \
         composer \
     && mkdir -p /run/nginx /var/tmp/nginx \
     && mkdir -p \
