@@ -50,7 +50,7 @@ RUN apk upgrade --update \
         php81-xmlwriter \
         php81-zip \
         php81-pecl-xdebug \
-        php81-pecl-oauth \
+        #php81-pecl-oauth \
         php81-pecl-redis \
         composer \
     && mkdir -p /run/nginx /var/tmp/nginx \
