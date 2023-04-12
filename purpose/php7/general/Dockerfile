@@ -1,15 +1,12 @@
-ARG BASE_IMAGE_PREFIX
-FROM ${BASE_IMAGE_PREFIX}alpine:3.13
+FROM --platform=${TARGETPLATFORM} alpine:3.15
 
-ARG ARCH
+ARG TARGETPLATFORM
 ARG BUILD_DATE
 LABEL maintainer="martin+docker@x8x.at" \
-        arch="${ARCH}" \
+        arch="${TARGETPLATFORM}" \
         phpversion="${PHPVERSION}" \
         purpose="general" \
         builddate="${BUILD_DATE}"
-
-COPY qemu-${ARCH}-static /usr/bin
 
 ENV COMPOSER_HOME /tmp/composer
 ENV COMPOSER_CACHE_DIR /tmp/composer/cache
@@ -20,6 +17,7 @@ RUN apk upgrade --update \
         bash \
         nginx \
         supervisor \
+        libseccomp \
         composer \
         php7 \
         php7-fpm \
