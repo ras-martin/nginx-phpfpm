@@ -45,7 +45,7 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=edge
+          VERSION=${PHP_VERSION}_edge
 
           if [[ $GITHUB_REF_NAME == master ]]; then
             VERSION=${PHP_VERSION}_latest
@@ -55,7 +55,7 @@ jobs:
             VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}
           fi
 
-          if [[ $GITHUB_REF == refs/heads/* ]]; then
+          if [[ !$GITHUB_REF_NAME == master ]] && [[ $GITHUB_REF == refs/heads/* ]]; then
             VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}__${GITHUB_RUN_NUMBER}
           fi
 
@@ -107,7 +107,7 @@ jobs:
       - name: Prepare
         id: prepare
         run: |
-          VERSION=edge
+          VERSION=${PHP_VERSION}_edge
 
           if [[ $GITHUB_REF_NAME == master ]]; then
             VERSION=${PHP_VERSION}_latest
@@ -117,7 +117,7 @@ jobs:
             VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}
           fi
 
-          if [[ $GITHUB_REF == refs/heads/* ]]; then
+          if [[ !$GITHUB_REF_NAME == master ]] && [[ $GITHUB_REF == refs/heads/* ]]; then
             VERSION=${PHP_VERSION}_${GITHUB_REF_NAME}__${GITHUB_RUN_NUMBER}
           fi
 
