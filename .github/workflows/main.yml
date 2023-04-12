@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 90
     env:
       PURPOSE: php8/general
-      PHP_VERSION: php80
+      PHP_VERSION: php81
 
     steps:
       - name: Checkout
