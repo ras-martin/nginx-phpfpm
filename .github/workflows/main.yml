@@ -1,7 +1,7 @@
 name: Docker Build
 on:
   push:
-    branches: [ master ]
+    branches: [ master, alpine*, php* ]
     tags:
       - v*
   pull_request:
@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 90
     env:
       PURPOSE: php8/general
-      PHP_VERSION: php81
+      PHP_VERSION: php83
 
     steps:
       - name: Checkout
