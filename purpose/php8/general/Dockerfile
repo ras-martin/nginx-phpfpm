@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM} alpine:3.17
+FROM --platform=${TARGETPLATFORM} alpine:3.19
 
 ARG TARGETPLATFORM
 ARG BUILD_DATE
@@ -20,37 +20,37 @@ RUN apk upgrade --update \
         nginx \
         supervisor \
         libseccomp \
-        php81 \
-        php81-fpm \
-        php81-bcmath \
-        php81-bz2 \
-        php81-curl \
-        php81-ctype \
-        php81-dom \
-        php81-exif \
-        php81-fileinfo \
-        php81-gd \
-        php81-iconv \
-        php81-intl \
-        php81-mbstring \
-        php81-mysqli \
-        php81-pgsql \
-        php81-opcache \
-        php81-openssl \
-        php81-pcntl \
-        php81-pdo \
-        php81-pdo_mysql \
-        php81-pdo_pgsql \
-        php81-phar \
-        php81-posix \
-        php81-tokenizer \
-        php81-simplexml \
-        php81-xml \
-        php81-xmlreader \
-        php81-xmlwriter \
-        php81-zip \
-        php81-pecl-xdebug \
-        php81-pecl-redis \
+        php83 \
+        php83-fpm \
+        php83-bcmath \
+        php83-bz2 \
+        php83-curl \
+        php83-ctype \
+        php83-dom \
+        php83-exif \
+        php83-fileinfo \
+        php83-gd \
+        php83-iconv \
+        php83-intl \
+        php83-mbstring \
+        php83-mysqli \
+        php83-pgsql \
+        php83-opcache \
+        php83-openssl \
+        php83-pcntl \
+        php83-pdo \
+        php83-pdo_mysql \
+        php83-pdo_pgsql \
+        php83-phar \
+        php83-posix \
+        php83-tokenizer \
+        php83-simplexml \
+        php83-xml \
+        php83-xmlreader \
+        php83-xmlwriter \
+        php83-zip \
+        php83-pecl-xdebug \
+        php83-pecl-redis \
         composer \
     && mkdir -p /run/nginx /var/tmp/nginx \
     && mkdir -p \
@@ -65,9 +65,9 @@ RUN apk upgrade --update \
         /application/sockets/php \
         /application/sockets/supervisord \
     && touch \
-        /etc/php81/conf.d/zzz-override.ini \
+        /etc/php83/conf.d/zzz-override.ini \
         /application/log/error.log \
-    && rm -f /etc/php81/conf.d/xdebug.ini \
+    && rm -f /etc/php83/conf.d/xdebug.ini \
     && adduser -u 82 -D -S -G www-data www-data \
     && chown -R www-data /application/log /application/run \
     && chown -R root:root /application/log/supervisord* \
@@ -81,11 +81,11 @@ WORKDIR /application/src
 COPY common/supervisord-php8.conf /etc/supervisord.conf
 COPY common/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY purpose/php8/general/nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY purpose/php8/general/php8/php-cli.ini /etc/php81/php-cli.ini
-COPY purpose/php8/general/php8/php.ini /etc/php81/php.ini
-COPY common/php8/php-fpm.conf /etc/php81/php-fpm.conf
-COPY common/php8/pool.conf /etc/php81/php-fpm.d/www.conf
-COPY purpose/php8/general/php8/opcache.blacklist /etc/php81/conf.d/opcache.blacklist
+COPY purpose/php8/general/php8/php-cli.ini /etc/php83/php-cli.ini
+COPY purpose/php8/general/php8/php.ini /etc/php83/php.ini
+COPY common/php8/php-fpm.conf /etc/php83/php-fpm.conf
+COPY common/php8/pool.conf /etc/php83/php-fpm.d/www.conf
+COPY purpose/php8/general/php8/opcache.blacklist /etc/php83/conf.d/opcache.blacklist
 
 # Entrypoint
 COPY common/entrypoint/entrypoint.sh /
