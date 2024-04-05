@@ -73,7 +73,8 @@ RUN apk upgrade --update \
     && chown -R root:root /application/log/supervisord* \
     && chown www-data:www-data /application/sockets/php \
     && chown -R www-data /var/tmp/nginx \
-    && chown -R www-data:www-data /var/lib/nginx
+    && chown -R www-data:www-data /var/lib/nginx \
+    && rm /usr/bin/php && ln -s /usr/bin/php83 /usr/bin/php
 
 WORKDIR /application/src
 
